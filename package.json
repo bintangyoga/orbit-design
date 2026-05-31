@@ -1,6 +1,6 @@
 {
   "name": "orbit-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A beautiful, glassmorphic React component library CLI — like shadcn/ui but with gradient depth effects",
   "private": true,
   "workspaces": [
@@ -12,6 +12,12 @@
     "docs": "npm run dev --workspace=packages/docs",
     "lint": "eslint packages/*/src"
   },
-  "keywords": ["react", "components", "tailwind", "glassmorphism", "cli"],
+  "keywords": [
+    "react",
+    "components",
+    "tailwind",
+    "glassmorphism",
+    "cli"
+  ],
   "license": "MIT"
 }
