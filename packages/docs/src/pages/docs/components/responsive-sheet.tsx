@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/button";
 import { ComponentPreview } from "@/components/component-preview";
 import {
