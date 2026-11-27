@@ -1,3 +1,5 @@
+@import "../../../cli/registry/styles/motion.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

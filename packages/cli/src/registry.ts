@@ -23,6 +23,8 @@ export interface RegistryItem {
   name: string;
   /** Component type */
   type: "registry:ui" | "registry:lib" | "registry:style";
+  /** One-line summary shown by `glass-orbit list` */
+  description?: string;
   /** npm dependencies to install */
   dependencies?: string[];
   /** Other glass-orbit components this depends on */
@@ -31,7 +33,7 @@ export interface RegistryItem {
   files: RegistryFile[];
   /** Tailwind config additions */
   tailwind?: {
-    /** Additional CSS to inject */
+    /** CSS appended once to the user's global CSS file (must start with a marker comment) */
     css?: string;
   };
 }

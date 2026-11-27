@@ -18,8 +18,14 @@ const navItems = [
   {
     title: "Components",
     items: [
+      { title: "Badge", href: "/docs/components/badge" },
       { title: "Button", href: "/docs/components/button" },
+      { title: "Card", href: "/docs/components/card" },
+      { title: "Dialog", href: "/docs/components/dialog" },
+      { title: "Dropdown Menu", href: "/docs/components/dropdown-menu" },
+      { title: "Input", href: "/docs/components/input" },
       { title: "ResponsiveSheet", href: "/docs/components/responsive-sheet" },
+      { title: "Tabs", href: "/docs/components/tabs" },
     ],
   },
 ];

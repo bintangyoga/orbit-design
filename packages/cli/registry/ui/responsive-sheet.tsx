@@ -1,6 +1,4 @@
-import { RegistryItem } from "../registry";
-
-const responsiveSheetComponent = `import * as React from "react";
+import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
@@ -91,7 +89,7 @@ const responsiveSheetContentVariants = cva(
 
 // CSS for responsive positioning — injected via a style tag approach
 // We use Tailwind responsive classes for this
-const responsiveSheetContentStyles = \`
+const responsiveSheetContentStyles = `
 /* ── Mobile: Drawer (bottom sheet) ── */
 .orbit-rs-content {
   /* Mobile-first: drawer from bottom */
@@ -130,7 +128,7 @@ const responsiveSheetContentStyles = \`
     --tw-exit-opacity: 0;
   }
 }
-\`;
+`;
 
 const ResponsiveSheetContent = React.forwardRef<
   React.ComponentRef<typeof DialogPrimitive.Content>,
@@ -162,14 +160,15 @@ const ResponsiveSheetContent = React.forwardRef<
       {children}
       <DialogPrimitive.Close
         className={cn(
-          "absolute right-4 top-4 rounded-sm opacity-70",
+          // 44px touch target
+          "absolute right-2 top-2 inline-flex h-11 w-11 items-center justify-center rounded-full opacity-70",
           "transition-opacity hover:opacity-100",
           "focus:outline-none focus:ring-2 focus:ring-[var(--orbit-ring)]",
           "disabled:pointer-events-none",
           "text-[var(--orbit-muted-foreground)]"
         )}
       >
-        <X className="h-4 w-4" />
+        <X className="h-5 w-5" />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
@@ -253,26 +252,3 @@ export {
   ResponsiveSheetTrigger,
   ResponsiveSheetClose,
 };
-`;
-
-export function getResponsiveSheetRegistry(): RegistryItem[] {
-  return [
-    {
-      name: "responsive-sheet",
-      type: "registry:ui",
-      dependencies: [
-        "@radix-ui/react-dialog",
-        "class-variance-authority",
-        "lucide-react",
-      ],
-      registryDependencies: ["utils"],
-      files: [
-        {
-          path: "responsive-sheet.tsx",
-          content: responsiveSheetComponent,
-          type: "registry:component",
-        },
-      ],
-    },
-  ];
-}

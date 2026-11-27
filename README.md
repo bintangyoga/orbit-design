@@ -86,6 +86,25 @@ import { Button } from "@/components/glass-orbit/button";
 <Button variant="glass">Glass</Button>
 ```
 
+## Components
+
+Mobile first: touch targets of at least 44px on phones, safe-area insets, and overlays that turn into bottom sheets on small screens.
+
+| Component | On phones | From 768px up |
+| --- | --- | --- |
+| `button` | 44px tall | compact |
+| `badge` | small status label | same |
+| `card` | glass surface, tight padding | more padding |
+| `input` | 44px, 16px text (no iOS zoom) | compact |
+| `dialog` | bottom sheet, swipe down to close | centered modal |
+| `dropdown-menu` | action sheet with Cancel | menu next to its button |
+| `tabs` | full width, swipe sideways | fits its tabs |
+| `responsive-sheet` | bottom drawer | centered dialog |
+
+```bash
+npx glass-orbit add dialog dropdown-menu tabs
+```
+
 ## Included Theme Presets
 
 - **Glass Orbit Dark** — cyan-blue on dark
@@ -100,7 +119,8 @@ import { Button } from "@/components/glass-orbit/button";
 glass-orbit/
 ├── packages/
 │   ├── cli/                 ← CLI tool (published as glass-orbit on npm)
-│   └── docs/                ← Documentation website (Next.js)
+│   │   └── registry/        ← component sources (.tsx) that `add` copies
+│   └── docs/                ← Documentation website (Vite, prerendered)
 ├── templates/               ← Theme presets (JSON)
 └── README.md
 ```

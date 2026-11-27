@@ -1,6 +1,4 @@
-import { RegistryItem } from "../registry";
-
-const buttonComponent = `import * as React from "react";
+import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
@@ -22,8 +20,8 @@ const buttonVariants = cva(
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
     "disabled:pointer-events-none disabled:opacity-50",
     "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-    // Border & shape
-    "rounded-[var(--orbit-radius)] border border-[var(--orbit-border)]",
+    // Border (shape comes from the `shape` variant below)
+    "border border-[var(--orbit-border)]",
     // Inner depth gradient (top-to-bottom shading)
     "bg-gradient-to-b from-white/[var(--orbit-highlight-opacity)] to-transparent",
   ].join(" "),
@@ -38,11 +36,9 @@ const buttonVariants = cva(
           "before:absolute before:inset-0 before:rounded-[inherit]",
           "before:bg-gradient-to-b before:from-transparent before:via-[var(--orbit-gradient-highlight)]/[0.12] before:to-transparent",
           "before:pointer-events-none",
-          // Gradient reflection band (horizontal line across middle)
-          "after:absolute after:inset-x-[8%] after:top-[55%] after:h-[22%] after:rounded-[inherit]",
-          "after:bg-gradient-to-r after:from-transparent",
-          "after:via-[var(--orbit-gradient)]/[var(--orbit-gradient-opacity)]",
-          "after:to-transparent",
+          // Shine line along the top edge (replaces the old mid-button band, which read as a stray block)
+          "after:absolute after:inset-x-[12%] after:top-0 after:h-px",
+          "after:bg-gradient-to-r after:from-transparent after:via-white/60 after:to-transparent",
           "after:pointer-events-none",
           // Glow effect
           "shadow-[0_0_calc(var(--orbit-glow-intensity)*40px)_calc(var(--orbit-glow-intensity)*8px)_var(--orbit-gradient-shadow)/0.3]",
@@ -112,11 +108,9 @@ const buttonVariants = cva(
           "before:absolute before:inset-0 before:rounded-[inherit]",
           "before:bg-gradient-to-b before:from-white/[var(--orbit-highlight-opacity)] before:to-transparent",
           "before:pointer-events-none",
-          // Subtle gradient line
-          "after:absolute after:inset-x-[12%] after:top-[55%] after:h-[18%] after:rounded-[inherit]",
-          "after:bg-gradient-to-r after:from-transparent",
-          "after:via-[var(--orbit-gradient)]/[calc(var(--orbit-gradient-opacity)*0.4)]",
-          "after:to-transparent",
+          // Shine line along the top edge
+          "after:absolute after:inset-x-[12%] after:top-0 after:h-px",
+          "after:bg-gradient-to-r after:from-transparent after:via-white/40 after:to-transparent",
           "after:pointer-events-none",
           "hover:bg-[var(--orbit-background)]/60",
           "hover:border-[var(--orbit-accent)]/30",
@@ -124,16 +118,24 @@ const buttonVariants = cva(
         ].join(" "),
       },
 
+      // Mobile first: 44px touch targets on small screens, compact from md (768px) up
       size: {
-        sm: "h-8 px-3 text-xs",
-        default: "h-10 px-4 py-2 text-sm",
+        sm: "h-9 px-3 text-xs md:h-8",
+        default: "h-11 px-5 py-2 text-sm md:h-10 md:px-4",
         lg: "h-12 px-6 text-base",
-        icon: "h-10 w-10",
+        icon: "h-11 w-11 md:h-10 md:w-10",
+      },
+
+      // Corner shape. Change the default below to switch every button at once.
+      shape: {
+        rounded: "rounded-[var(--orbit-radius)]",
+        pill: "rounded-full",
       },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
+      shape: "rounded",
     },
   }
 );
@@ -145,11 +147,11 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, shape, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, size, shape, className }))}
         ref={ref}
         {...props}
       />
@@ -159,22 +161,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 
 export { Button, buttonVariants };
-`;
-
-export function getButtonRegistry(): RegistryItem[] {
-  return [
-    {
-      name: "button",
-      type: "registry:ui",
-      dependencies: ["@radix-ui/react-slot", "class-variance-authority"],
-      registryDependencies: ["utils"],
-      files: [
-        {
-          path: "button.tsx",
-          content: buttonComponent,
-          type: "registry:component",
-        },
-      ],
-    },
-  ];
-}

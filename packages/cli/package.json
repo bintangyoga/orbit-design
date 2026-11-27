@@ -1,11 +1,16 @@
 {
   "name": "glass-orbit",
   "version": "0.2.0",
-  "description": "Beautiful glassmorphic React component library — gradient depth effects, custom themes, copy-paste like shadcn",
+  "description": "Beautiful glassmorphic React component library \u2014 gradient depth effects, custom themes, copy-paste like shadcn",
   "main": "dist/index.js",
   "bin": {
     "glass-orbit": "./dist/index.js"
   },
+  "files": [
+    "dist",
+    "registry",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch"

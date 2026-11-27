@@ -50,6 +50,36 @@ export const pages: PageMeta[] = [
     description:
       "A responsive React overlay that is a bottom drawer on mobile and a centered dialog on desktop. Built on Radix Dialog, with a glass variant.",
   },
+  {
+    path: "/docs/components/badge",
+    title: "Badge — Glass Orbit",
+    description: "A small glass label for status, counts and tags in React, with default, secondary, outline, destructive and glass variants.",
+  },
+  {
+    path: "/docs/components/card",
+    title: "Card — Glass Orbit",
+    description: "A glassmorphic React card with header, title, description, content and footer parts. Mobile first padding, link cards with asChild.",
+  },
+  {
+    path: "/docs/components/dialog",
+    title: "Dialog — Glass Orbit",
+    description: "A mobile first React dialog: a bottom sheet you swipe down to close on phones, a centered modal on desktop. Built on Radix Dialog.",
+  },
+  {
+    path: "/docs/components/dropdown-menu",
+    title: "Dropdown Menu — Glass Orbit",
+    description: "A React dropdown menu that becomes an action sheet on phones and a menu next to its button on desktop. Built on Radix.",
+  },
+  {
+    path: "/docs/components/input",
+    title: "Input — Glass Orbit",
+    description: "A glass text input for React, 44px tall with 16px text on phones so iOS does not zoom, with error and disabled states.",
+  },
+  {
+    path: "/docs/components/tabs",
+    title: "Tabs — Glass Orbit",
+    description: "Glass segmented and underline tabs for React. Full width and swipeable on phones with 44px tap targets. Built on Radix Tabs.",
+  },
 ];
 
 export const notFoundMeta: PageMeta = {

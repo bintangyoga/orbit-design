@@ -9,6 +9,12 @@ import Installation from "@/pages/docs/installation";
 import Theming from "@/pages/docs/theming";
 import ButtonPage from "@/pages/docs/components/button";
 import ResponsiveSheetPage from "@/pages/docs/components/responsive-sheet";
+import BadgePage from "@/pages/docs/components/badge";
+import CardPage from "@/pages/docs/components/card";
+import DialogPage from "@/pages/docs/components/dialog";
+import DropdownMenuPage from "@/pages/docs/components/dropdown-menu";
+import InputPage from "@/pages/docs/components/input";
+import TabsPage from "@/pages/docs/components/tabs";
 import NotFound from "@/pages/not-found";
 
 /** Keeps the tab title right during client-side use (prerendered pages already have it). */
@@ -37,6 +43,12 @@ export function App() {
             path="/docs/components/responsive-sheet"
             element={<ResponsiveSheetPage />}
           />
+          <Route path="/docs/components/badge" element={<BadgePage />} />
+          <Route path="/docs/components/card" element={<CardPage />} />
+          <Route path="/docs/components/dialog" element={<DialogPage />} />
+          <Route path="/docs/components/dropdown-menu" element={<DropdownMenuPage />} />
+          <Route path="/docs/components/input" element={<InputPage />} />
+          <Route path="/docs/components/tabs" element={<TabsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

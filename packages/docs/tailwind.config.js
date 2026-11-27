@@ -6,6 +6,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{ts,tsx}",
+    "../cli/registry/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
