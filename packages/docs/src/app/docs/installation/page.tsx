@@ -10,7 +10,7 @@ export default function InstallationPage() {
             <p>npx glass-orbit init</p>
           </div>
           <p className="mt-3 text-sm text-[var(--orbit-muted-foreground)]">
-            This creates <code className="bg-[var(--orbit-muted)] px-1.5 py-0.5 rounded text-[var(--orbit-foreground)]">orbit-ui.json</code> in your project root
+            This creates <code className="bg-[var(--orbit-muted)] px-1.5 py-0.5 rounded text-[var(--orbit-foreground)]">glass-orbit.json</code> in your project root
             and injects the theme CSS into your global stylesheet.
           </p>
         </div>
