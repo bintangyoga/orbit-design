@@ -6,7 +6,7 @@ export default function Home() {
       <div className="max-w-2xl text-center space-y-8">
         <div className="space-y-4">
           <h1 className="text-5xl font-bold tracking-tight text-[var(--orbit-foreground)]">
-            Orbit Design
+            Glass Orbit
           </h1>
           <p className="text-lg text-[var(--orbit-muted-foreground)]">
             Beautiful glassmorphic React components with gradient depth effects. <br />
@@ -35,8 +35,8 @@ export default function Home() {
             <span className="text-sm font-medium text-[var(--orbit-foreground)]">Quick Start</span>
           </div>
           <pre className="text-sm text-[var(--orbit-muted-foreground)] bg-[var(--orbit-muted)] rounded-md p-4">
-            <code>{`npx orbit-design init
-npx orbit-design add button`}</code>
+            <code>{`npx glass-orbit init
+npx glass-orbit add button`}</code>
           </pre>
         </div>
       </div>

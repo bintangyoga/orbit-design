@@ -4,12 +4,12 @@ import { getRegistry } from "../registry/fetch";
 
 export function listCommand(): Command {
   return new Command("list")
-    .description("List all available Orbit Design components")
+    .description("List all available Glass Orbit components")
     .action(async () => {
       try {
         const registry = await getRegistry();
 
-        console.log(chalk.cyan("\n✨ Available Orbit Design components:\n"));
+        console.log(chalk.cyan("\n✨ Available Glass Orbit components:\n"));
 
         const items = Array.from(registry.values());
 
@@ -26,7 +26,7 @@ export function listCommand(): Command {
 
         console.log();
         console.log(chalk.gray(`  Total: ${items.length} components`));
-        console.log(chalk.gray("  Add a component: ") + chalk.cyan("npx orbit-design add <name>"));
+        console.log(chalk.gray("  Add a component: ") + chalk.cyan("npx glass-orbit add <name>"));
         console.log();
       } catch (err: any) {
         console.error(chalk.red("Failed to load registry:"), err.message);

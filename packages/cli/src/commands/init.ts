@@ -4,16 +4,16 @@ import fs from "fs-extra";
 import path from "path";
 import chalk from "chalk";
 import ora from "ora";
-import { OrbitUIConfig, defaultConfig } from "../config";
+import { OrbitUIConfig, defaultConfig, CONFIG_FILE } from "../config";
 import { generateThemeCSS, orbitDark, orbitLight } from "../theme";
 import { generateCNUtil } from "../utils/cn";
 
 export function initCommand(): Command {
   return new Command("init")
-    .description("Initialize Orbit Design in your project")
+    .description("Initialize Glass Orbit in your project")
     .option("-y, --yes", "Skip prompts, use defaults")
     .action(async (options) => {
-      console.log(chalk.cyan("\n✨ Welcome to Orbit Design!\n"));
+      console.log(chalk.cyan("\n✨ Welcome to Glass Orbit!\n"));
 
       let config: OrbitUIConfig;
 
@@ -53,7 +53,7 @@ export function initCommand(): Command {
             type: "input",
             name: "componentsAlias",
             message: "Where should components be installed?",
-            default: "@/components/orbit-ui",
+            default: "@/components/glass-orbit",
           },
           {
             type: "input",
@@ -78,11 +78,11 @@ export function initCommand(): Command {
         };
       }
 
-      const spinner = ora("Setting up Orbit Design...").start();
+      const spinner = ora("Setting up Glass Orbit...").start();
 
       try {
         // 1. Write config file
-        await fs.writeJSON("orbit-ui.json", config, { spaces: 2 });
+        await fs.writeJSON(CONFIG_FILE, config, { spaces: 2 });
 
         // 2. Write theme CSS
         const themeCSS = generateThemeCSS(orbitDark, orbitLight);
@@ -90,8 +90,8 @@ export function initCommand(): Command {
 
         if (await fs.pathExists(cssPath)) {
           const existing = await fs.readFile(cssPath, "utf-8");
-          // Append orbit theme if not already present
-          if (!existing.includes("orbit-ui theme")) {
+          // Append theme if not already present (old orbit-ui marker counts too)
+          if (!existing.includes("glass-orbit theme") && !existing.includes("orbit-ui theme")) {
             await fs.appendFile(cssPath, `\n\n${themeCSS}`);
             spinner.info(`Appended theme to ${chalk.cyan(cssPath)}`);
           } else {
@@ -100,7 +100,7 @@ export function initCommand(): Command {
         } else {
           await fs.ensureFile(cssPath);
           await fs.writeFile(cssPath, themeCSS);
-          spinner.info(`Created ${chalk.cyan(cssPath)} with orbit theme`);
+          spinner.info(`Created ${chalk.cyan(cssPath)} with glass-orbit theme`);
         }
 
         // 3. Write cn utility
@@ -110,12 +110,12 @@ export function initCommand(): Command {
         await fs.ensureDir(path.dirname(utilsPath));
         await fs.writeFile(utilsPath, generateCNUtil());
 
-        spinner.succeed(chalk.green("Orbit Design initialized! ✨"));
+        spinner.succeed(chalk.green("Glass Orbit initialized! ✨"));
         console.log();
         console.log(chalk.gray("  Next steps:"));
         console.log(chalk.gray("  1. Install dependencies:  ") + chalk.cyan("npm install clsx tailwind-merge class-variance-authority"));
-        console.log(chalk.gray("  2. Add components:         ") + chalk.cyan("npx orbit-design add button"));
-        console.log(chalk.gray("  3. Customize theme:        ") + chalk.cyan("npx orbit-design theme"));
+        console.log(chalk.gray("  2. Add components:         ") + chalk.cyan("npx glass-orbit add button"));
+        console.log(chalk.gray("  3. Customize theme:        ") + chalk.cyan("npx glass-orbit theme"));
         console.log();
       } catch (err: any) {
         spinner.fail(chalk.red("Failed to initialize"));

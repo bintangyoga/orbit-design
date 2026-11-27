@@ -3,7 +3,7 @@ import fs from "fs-extra";
 import path from "path";
 import chalk from "chalk";
 import ora from "ora";
-import { OrbitUIConfig } from "../config";
+import { OrbitUIConfig, readConfig } from "../config";
 import { RegistryItem, resolveDependencies } from "../registry";
 import { getRegistry } from "../registry/fetch";
 import { detectPackageManager, installDeps } from "../utils/package-manager";
@@ -17,10 +17,10 @@ export function addCommand(): Command {
     .action(async (componentNames: string[], options) => {
       let config: OrbitUIConfig;
       try {
-        config = await fs.readJSON("orbit-ui.json");
+        config = await readConfig();
       } catch {
-        console.error(chalk.red("\n  Orbit Design is not initialized."));
-        console.log(chalk.gray("  Run ") + chalk.cyan("npx orbit-design init") + chalk.gray(" first.\n"));
+        console.error(chalk.red("\n  Glass Orbit is not initialized."));
+        console.log(chalk.gray("  Run ") + chalk.cyan("npx glass-orbit init") + chalk.gray(" first.\n"));
         process.exit(1);
       }
 

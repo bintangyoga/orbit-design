@@ -9,9 +9,9 @@ import { themeCommand } from "./commands/theme";
 const program = new Command();
 
 program
-  .name("orbit-design")
+  .name("glass-orbit")
   .description("✨ A beautiful glassmorphic React component library CLI")
-  .version("0.1.0");
+  .version("0.2.0");
 
 program.addCommand(initCommand());
 program.addCommand(addCommand());

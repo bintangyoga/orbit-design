@@ -1,6 +1,13 @@
 /**
- * orbit-ui Config — stored in user's project as orbit-ui.json
+ * glass-orbit Config — stored in user's project as glass-orbit.json
  */
+
+import fs from "fs-extra";
+
+/** Config file written by `glass-orbit init` */
+export const CONFIG_FILE = "glass-orbit.json";
+/** Config file name used before the rename to glass-orbit (still read) */
+export const LEGACY_CONFIG_FILE = "orbit-ui.json";
 
 export interface OrbitUIConfig {
   /** $schema for IDE autocomplete */
@@ -27,7 +34,7 @@ export interface OrbitUIConfig {
   };
   /** Custom theme overrides */
   theme?: {
-    /** Path to custom theme file (orbit-theme.json) */
+    /** Path to custom theme file (glass-orbit-theme.json) */
     file?: string;
   };
 }
@@ -41,7 +48,7 @@ export const defaultConfig: OrbitUIConfig = {
     baseColor: "slate",
   },
   aliases: {
-    components: "@/components/orbit-ui",
+    components: "@/components/glass-orbit",
     utils: "@/lib/utils",
   },
 };
@@ -56,4 +63,15 @@ export function validateConfig(config: Partial<OrbitUIConfig>): config is OrbitU
     config.aliases.components &&
     config.aliases.utils
   );
+}
+
+/**
+ * Reads glass-orbit.json, falling back to orbit-ui.json for projects
+ * set up with the old orbit-design CLI. Throws if neither exists.
+ */
+export async function readConfig(): Promise<OrbitUIConfig> {
+  if (await fs.pathExists(CONFIG_FILE)) {
+    return fs.readJSON(CONFIG_FILE);
+  }
+  return fs.readJSON(LEGACY_CONFIG_FILE);
 }

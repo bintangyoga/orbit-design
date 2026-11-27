@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/button";
 import { ComponentPreview } from "@/components/component-preview";
 import {
@@ -191,7 +189,7 @@ export default function ResponsiveSheetPage() {
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Installation</h2>
         <div className="bg-[var(--orbit-muted)] rounded-md p-4 text-sm font-mono">
-          <p>npx orbit-design add responsive-sheet</p>
+          <p>npx glass-orbit add responsive-sheet</p>
         </div>
       </section>
 
@@ -208,7 +206,7 @@ export default function ResponsiveSheetPage() {
   ResponsiveSheetTitle,
   ResponsiveSheetDescription,
   ResponsiveSheetClose,
-} from "@/components/orbit-ui/responsive-sheet"
+} from "@/components/glass-orbit/responsive-sheet"
 
 export default function Page() {
   return (
@@ -353,7 +351,7 @@ export default function Page() {
         <p className="text-xs text-[var(--orbit-muted-foreground)]">
           Installed automatically when running{" "}
           <code className="bg-[var(--orbit-muted)] px-1 py-0.5 rounded">
-            npx orbit-design add responsive-sheet
+            npx glass-orbit add responsive-sheet
           </code>
         </p>
       </section>

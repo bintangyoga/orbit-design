@@ -81,14 +81,14 @@ export default function ButtonPage() {
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Installation</h2>
         <div className="bg-[var(--orbit-muted)] rounded-md p-4 text-sm font-mono">
-          <p>npx orbit-design add button</p>
+          <p>npx glass-orbit add button</p>
         </div>
       </section>
 
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Usage</h2>
         <div className="bg-[var(--orbit-muted)] rounded-md p-4 text-sm font-mono overflow-x-auto">
-          <pre>{`import { Button } from "@/components/orbit-ui/button"
+          <pre>{`import { Button } from "@/components/glass-orbit/button"
 
 export default function Page() {
   return <Button variant="default">Click me</Button>

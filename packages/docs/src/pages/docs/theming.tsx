@@ -3,7 +3,7 @@ export default function ThemingPage() {
     <div className="p-8 max-w-3xl">
       <h1 className="text-4xl font-bold tracking-tight mb-4">Theming</h1>
       <p className="text-lg text-[var(--orbit-muted-foreground)] mb-8">
-        Orbit Design uses CSS variables for full color customization.
+        Glass Orbit uses CSS variables for full color customization.
         Create your own themes with a JSON config file.
       </p>
 
@@ -57,8 +57,8 @@ export default function ThemingPage() {
           <h2 className="text-xl font-semibold mb-3">Included Presets</h2>
           <div className="grid grid-cols-2 gap-3">
             {[
-              { name: "Orbit Dark", color: "#3087ed", desc: "Cyan-blue on dark" },
-              { name: "Orbit Light", color: "#0090fe", desc: "Blue on white" },
+              { name: "Glass Orbit Dark", color: "#3087ed", desc: "Cyan-blue on dark" },
+              { name: "Glass Orbit Light", color: "#0090fe", desc: "Blue on white" },
               { name: "Ocean Night", color: "#06b6d4", desc: "Teal on deep blue" },
               { name: "Sunset Ember", color: "#f97316", desc: "Orange on warm dark" },
               { name: "Emerald Dream", color: "#10b981", desc: "Emerald on dark green" },

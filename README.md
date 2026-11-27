@@ -1,10 +1,10 @@
-# orbit-design
+# glass-orbit
 
 Beautiful glassmorphic React component library — gradient depth effects, custom themes, copy-paste like shadcn.
 
 ```bash
-npx orbit-design init
-npx orbit-design add button
+npx glass-orbit init
+npx glass-orbit add button
 ```
 
 **Docs:** https://orbitdesign.vercel.app
@@ -22,17 +22,17 @@ npx orbit-design add button
 ## Quick Start
 
 ```bash
-npx orbit-design init
-npx orbit-design add button
-npx orbit-design add --all
+npx glass-orbit init
+npx glass-orbit add button
+npx glass-orbit add --all
 ```
 
 ## Theme Customization
 
 ```bash
-npx orbit-design theme generate
-npx orbit-design theme apply orbit-theme-my-custom-theme.json
-npx orbit-design theme show
+npx glass-orbit theme generate
+npx glass-orbit theme apply glass-orbit-theme-my-custom-theme.json
+npx glass-orbit theme show
 ```
 
 ### Custom Theme JSON
@@ -76,7 +76,7 @@ npx orbit-design theme show
 ## Button Variants
 
 ```tsx
-import { Button } from "@/components/orbit-ui/button";
+import { Button } from "@/components/glass-orbit/button";
 
 <Button>Click me</Button>
 <Button variant="secondary">Secondary</Button>
@@ -88,8 +88,8 @@ import { Button } from "@/components/orbit-ui/button";
 
 ## Included Theme Presets
 
-- **Orbit Dark** — cyan-blue on dark
-- **Orbit Light** — blue on white
+- **Glass Orbit Dark** — cyan-blue on dark
+- **Glass Orbit Light** — blue on white
 - **Ocean Night** — teal on deep blue
 - **Sunset Ember** — orange on warm dark
 - **Emerald Dream** — emerald on dark green
@@ -97,9 +97,9 @@ import { Button } from "@/components/orbit-ui/button";
 ## Architecture
 
 ```
-orbit-ui/
+glass-orbit/
 ├── packages/
-│   ├── cli/                 ← CLI tool (published as orbit-design on npm)
+│   ├── cli/                 ← CLI tool (published as glass-orbit on npm)
 │   └── docs/                ← Documentation website (Next.js)
 ├── templates/               ← Theme presets (JSON)
 └── README.md
@@ -107,9 +107,9 @@ orbit-ui/
 
 ## How It Works
 
-Like shadcn/ui, orbit-design is **not a dependency**. When you run `orbit-design add button`:
+Like shadcn/ui, glass-orbit is **not a dependency**. When you run `glass-orbit add button`:
 
-1. Reads your `orbit-ui.json` config
+1. Reads your `glass-orbit.json` config
 2. Fetches the component from the registry
 3. Resolves dependencies (recursively)
 4. Writes the actual `.tsx` files to your project
