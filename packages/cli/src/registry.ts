@@ -1,5 +1,5 @@
 /**
- * orbit-ui Registry — component definitions
+ * glass-orbit Registry — component definitions
  */
 
 export interface RegistryFile {
@@ -25,7 +25,7 @@ export interface RegistryItem {
   type: "registry:ui" | "registry:lib" | "registry:style";
   /** npm dependencies to install */
   dependencies?: string[];
-  /** Other orbit-ui components this depends on */
+  /** Other glass-orbit components this depends on */
   registryDependencies?: string[];
   /** Files to create */
   files: RegistryFile[];

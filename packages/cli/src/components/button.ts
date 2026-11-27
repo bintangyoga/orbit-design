@@ -6,10 +6,10 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 /**
- * orbit-ui Button
+ * glass-orbit Button
  * 
  * A beautiful button with glass gradient effect and inner depth.
- * Fully themeable via CSS variables defined in your orbit theme.
+ * Fully themeable via CSS variables defined in your glass-orbit theme.
  *
  * @see https://orbitdesign.vercel.app
  */

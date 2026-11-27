@@ -11,16 +11,16 @@ import {
   generateThemeCSS,
   themeToCSS,
 } from "../theme";
-import { OrbitUIConfig } from "../config";
+import { OrbitUIConfig, readConfig } from "../config";
 
 export function themeCommand(): Command {
   return new Command("theme")
-    .description("Manage and customize your Orbit Design theme")
+    .description("Manage and customize your Glass Orbit theme")
     .addCommand(
       new Command("generate")
         .description("Generate a new theme from prompts")
         .action(async () => {
-          console.log(chalk.cyan("\n🎨 Create your custom Orbit Design theme\n"));
+          console.log(chalk.cyan("\n🎨 Create your custom Glass Orbit theme\n"));
 
           const answers = await inquirer.prompt([
             {
@@ -34,8 +34,8 @@ export function themeCommand(): Command {
               name: "baseTheme",
               message: "Base your theme on:",
               choices: [
-                { name: "Orbit Dark (dark with cyan-blue accents)", value: "dark" },
-                { name: "Orbit Light (light with blue accents)", value: "light" },
+                { name: "Glass Orbit Dark (dark with cyan-blue accents)", value: "dark" },
+                { name: "Glass Orbit Light (light with blue accents)", value: "light" },
                 { name: "From scratch", value: "scratch" },
               ],
             },
@@ -122,11 +122,11 @@ export function themeCommand(): Command {
           base.radius = answers.borderRadius;
 
           // Save theme file
-          const themePath = `orbit-theme-${answers.themeName}.json`;
+          const themePath = `glass-orbit-theme-${answers.themeName}.json`;
           await fs.writeJSON(themePath, base, { spaces: 2 });
 
           console.log(chalk.green(`\n✓ Theme saved to ${chalk.cyan(themePath)}`));
-          console.log(chalk.gray("  Apply it with: ") + chalk.cyan(`npx orbit-design theme apply ${themePath}`));
+          console.log(chalk.gray("  Apply it with: ") + chalk.cyan(`npx glass-orbit theme apply ${themePath}`));
           console.log();
         })
     )
@@ -141,10 +141,10 @@ export function themeCommand(): Command {
             // Load config
             let config: OrbitUIConfig;
             try {
-              config = await fs.readJSON("orbit-ui.json");
+              config = await readConfig();
             } catch {
-              spinner.fail(chalk.red("Orbit Design is not initialized."));
-              console.log(chalk.gray("  Run ") + chalk.cyan("npx orbit-design init") + chalk.gray(" first."));
+              spinner.fail(chalk.red("Glass Orbit is not initialized."));
+              console.log(chalk.gray("  Run ") + chalk.cyan("npx glass-orbit init") + chalk.gray(" first."));
               process.exit(1);
             }
 
@@ -158,8 +158,8 @@ export function themeCommand(): Command {
 
             if (await fs.pathExists(cssPath)) {
               const existing = await fs.readFile(cssPath, "utf-8");
-              // Replace existing orbit theme block
-              const pattern = /\/\* orbit-ui theme.*?\*\/\n:root\s*\{[^}]*\}\s*\.dark\s*\{[^}]*\}/s;
+              // Replace existing theme block (also matches the old orbit-ui marker)
+              const pattern = /\/\* (?:glass-orbit|orbit-ui) theme.*?\*\/\n:root\s*\{[^}]*\}\s*\.dark\s*\{[^}]*\}/s;
               if (pattern.test(existing)) {
                 const updated = existing.replace(pattern, css);
                 await fs.writeFile(cssPath, updated);
@@ -186,7 +186,7 @@ export function themeCommand(): Command {
         .description("Show the current theme CSS variables")
         .action(async () => {
           try {
-            const config = await fs.readJSON("orbit-ui.json");
+            const config = await readConfig();
             const cssPath = config.tailwind.css;
             const css = await fs.readFile(cssPath, "utf-8");
 
@@ -195,17 +195,17 @@ export function themeCommand(): Command {
             const vars = css.match(varRegex);
 
             if (vars) {
-              console.log(chalk.cyan("\n🎨 Current Orbit Design theme:\n"));
+              console.log(chalk.cyan("\n🎨 Current Glass Orbit theme:\n"));
               for (const v of vars) {
                 const [name, value] = v.split(":").map((s) => s.trim().replace(";", ""));
                 console.log(`  ${chalk.bold(name)}: ${chalk.hex(value?.replace("#", "") || "ffffff")(value || "")} ${chalk.gray(value)}`);
               }
               console.log();
             } else {
-              console.log(chalk.yellow("No Orbit Design theme variables found."));
+              console.log(chalk.yellow("No Glass Orbit theme variables found."));
             }
           } catch {
-            console.error(chalk.red("Orbit Design is not initialized."));
+            console.error(chalk.red("Glass Orbit is not initialized."));
           }
         })
     );

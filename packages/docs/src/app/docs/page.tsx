@@ -1,7 +1,7 @@
 export default function DocsPage() {
   return (
     <div className="p-8 max-w-3xl">
-      <h1 className="text-4xl font-bold tracking-tight mb-4">Orbit Design</h1>
+      <h1 className="text-4xl font-bold tracking-tight mb-4">Glass Orbit</h1>
       <p className="text-lg text-[var(--orbit-muted-foreground)] mb-8">
         A collection of beautiful, glassmorphic React components you can copy and paste
         into your apps. Fully customizable with your own themes.
@@ -19,8 +19,8 @@ export default function DocsPage() {
 
         <h2 className="text-2xl font-semibold pt-4">Quick Start</h2>
         <div className="bg-[var(--orbit-muted)] rounded-md p-4 text-sm font-mono text-[var(--orbit-foreground)]">
-          <p>$ npx orbit-design init</p>
-          <p>$ npx orbit-design add button</p>
+          <p>$ npx glass-orbit init</p>
+          <p>$ npx glass-orbit add button</p>
         </div>
       </div>
     </div>

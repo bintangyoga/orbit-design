@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 
 /**
- * orbit-ui ResponsiveSheet
+ * glass-orbit ResponsiveSheet
  *
  * A responsive overlay component that renders as a bottom drawer on mobile
  * and a centered dialog on desktop. Built on Radix Dialog primitives.
