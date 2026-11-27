@@ -104,9 +104,9 @@ export const registryEntries: RegistryEntry[] = [
   {
     name: "responsive-sheet",
     type: "registry:ui",
-    description: "Bottom drawer on mobile, centered dialog on desktop",
-    dependencies: ["@radix-ui/react-dialog", "class-variance-authority", "lucide-react"],
-    registryDependencies: ["utils"],
+    description: "Old name for dialog, kept so existing imports work",
+    dependencies: [],
+    registryDependencies: ["dialog"],
     files: [
       {
         source: "ui/responsive-sheet.tsx",

@@ -36,7 +36,7 @@ export const pages: PageMeta[] = [
     path: "/docs/theming",
     title: "Theming — Glass Orbit",
     description:
-      "Customize Glass Orbit with CSS variables and a JSON theme file: colors, gradient settings, depth and radius, plus the included presets.",
+      "Rebrand Glass Orbit with one CSS variable, or customize every color, gradient, depth and radius with a JSON theme file. Includes presets.",
   },
   {
     path: "/docs/components/button",
@@ -46,9 +46,9 @@ export const pages: PageMeta[] = [
   },
   {
     path: "/docs/components/responsive-sheet",
-    title: "ResponsiveSheet — Glass Orbit",
+    title: "ResponsiveSheet is now Dialog — Glass Orbit",
     description:
-      "A responsive React overlay that is a bottom drawer on mobile and a centered dialog on desktop. Built on Radix Dialog, with a glass variant.",
+      "ResponsiveSheet is the old name for the Glass Orbit Dialog: one component that is a bottom sheet on mobile and a centered modal on desktop.",
   },
   {
     path: "/docs/components/badge",

@@ -25,7 +25,7 @@ const badgeVariants = cva(
       variant: {
         default: [
           "border-transparent bg-[var(--orbit-primary)] text-[var(--orbit-primary-foreground)]",
-          "shadow-[inset_0_1px_0_0_rgb(255_255_255/0.25)]",
+          "shadow-[inset_0_1px_0_0_color-mix(in_srgb,var(--orbit-highlight)_25%,transparent)]",
         ].join(" "),
         secondary:
           "border-transparent bg-[var(--orbit-secondary)] text-[var(--orbit-secondary-foreground)]",
@@ -35,7 +35,7 @@ const badgeVariants = cva(
         glass: [
           "border-[var(--orbit-border)] text-[var(--orbit-foreground)]",
           "bg-[color-mix(in_srgb,var(--orbit-card)_55%,transparent)] backdrop-blur-md",
-          "shadow-[inset_0_1px_0_0_rgb(255_255_255/var(--orbit-highlight-opacity))]",
+          "shadow-[inset_0_1px_0_0_color-mix(in_srgb,var(--orbit-highlight)_calc(var(--orbit-highlight-opacity)*100%),transparent)]",
         ].join(" "),
       },
     },

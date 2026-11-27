@@ -88,7 +88,7 @@ import { Button } from "@/components/glass-orbit/button";
 
 ## Components
 
-Mobile first: touch targets of at least 44px on phones, safe-area insets, and overlays that turn into bottom sheets on small screens.
+Mobile first, one import per component: you write the same code for every screen, and each component picks its phone or desktop form itself. Touch targets are at least 44px on phones, with safe-area insets.
 
 | Component | On phones | From 768px up |
 | --- | --- | --- |
@@ -99,11 +99,12 @@ Mobile first: touch targets of at least 44px on phones, safe-area insets, and ov
 | `dialog` | bottom sheet, swipe down to close | centered modal |
 | `dropdown-menu` | action sheet with Cancel | menu next to its button |
 | `tabs` | full width, swipe sideways | fits its tabs |
-| `responsive-sheet` | bottom drawer | centered dialog |
 
 ```bash
 npx glass-orbit add dialog dropdown-menu tabs
 ```
+
+`responsive-sheet` is now part of `dialog`. The old `ResponsiveSheet*` names still work and use `Dialog` underneath.
 
 ## Included Theme Presets
 

@@ -67,7 +67,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "orbit-overlay fixed inset-0 z-50 bg-black/50 backdrop-blur-sm",
+      "orbit-overlay fixed inset-0 z-50 bg-[color:var(--orbit-overlay,rgb(0_0_0/0.50))] backdrop-blur-sm",
       className
     )}
     {...props}
@@ -93,7 +93,7 @@ const dialogContentVariants = cva(
   [
     "orbit-surface fixed z-50 grid gap-4 overflow-y-auto overscroll-contain",
     "border border-[var(--orbit-border)] text-[var(--orbit-card-foreground)]",
-    "shadow-[0_-8px_40px_-12px_rgb(0_0_0/0.35),inset_0_1px_0_0_rgb(255_255_255/var(--orbit-highlight-opacity))]",
+    "shadow-[0_-8px_40px_-12px_color-mix(in_srgb,var(--orbit-shadow,#000)_35%,transparent),inset_0_1px_0_0_color-mix(in_srgb,var(--orbit-highlight)_calc(var(--orbit-highlight-opacity)*100%),transparent)]",
     "focus:outline-none",
   ].join(" "),
   {
@@ -250,7 +250,7 @@ const DialogCloseButton = React.forwardRef<
         "absolute right-3 top-3 inline-flex size-11 items-center justify-center rounded-full md:size-9",
         "border border-[var(--orbit-border)] text-[var(--orbit-foreground)]",
         "bg-[color-mix(in_srgb,var(--orbit-muted)_70%,transparent)] backdrop-blur-md",
-        "shadow-[inset_0_1px_0_0_rgb(255_255_255/var(--orbit-highlight-opacity))]",
+        "shadow-[inset_0_1px_0_0_color-mix(in_srgb,var(--orbit-highlight)_calc(var(--orbit-highlight-opacity)*100%),transparent)]",
         "transition-[background-color,transform] hover:bg-[var(--orbit-muted)] active:scale-95",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--orbit-ring)]",
         "[&_svg]:size-5 md:[&_svg]:size-4",

@@ -84,7 +84,7 @@ const TabsTrigger = React.forwardRef<
       "group-data-[variant=segmented]/tabs-list:rounded-[var(--orbit-radius)]",
       "group-data-[variant=segmented]/tabs-list:data-[state=active]:text-[var(--orbit-foreground)]",
       "group-data-[variant=segmented]/tabs-list:data-[state=active]:bg-[color-mix(in_srgb,var(--orbit-card)_85%,transparent)]",
-      "group-data-[variant=segmented]/tabs-list:data-[state=active]:shadow-[0_1px_8px_-2px_rgb(0_0_0/0.25),inset_0_1px_0_0_rgb(255_255_255/var(--orbit-highlight-opacity))]",
+      "group-data-[variant=segmented]/tabs-list:data-[state=active]:shadow-[0_1px_8px_-2px_color-mix(in_srgb,var(--orbit-shadow,#000)_25%,transparent),inset_0_1px_0_0_color-mix(in_srgb,var(--orbit-highlight)_calc(var(--orbit-highlight-opacity)*100%),transparent)]",
       // underline
       "group-data-[variant=underline]/tabs-list:after:absolute group-data-[variant=underline]/tabs-list:after:inset-x-3",
       "group-data-[variant=underline]/tabs-list:after:-bottom-px group-data-[variant=underline]/tabs-list:after:h-0.5",

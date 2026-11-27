@@ -118,7 +118,7 @@ const GLASS = [
   "bg-[color-mix(in_srgb,var(--orbit-popover)_75%,transparent)]",
   "backdrop-blur-2xl backdrop-saturate-150",
   "text-[var(--orbit-popover-foreground)]",
-  "shadow-[0_12px_40px_-12px_rgb(0_0_0/0.4),inset_0_1px_0_0_rgb(255_255_255/var(--orbit-highlight-opacity))]",
+  "shadow-[0_12px_40px_-12px_color-mix(in_srgb,var(--orbit-shadow,#000)_40%,transparent),inset_0_1px_0_0_color-mix(in_srgb,var(--orbit-highlight)_calc(var(--orbit-highlight-opacity)*100%),transparent)]",
 ].join(" ");
 
 export interface DropdownMenuContentProps
@@ -139,7 +139,7 @@ const DropdownMenuContent = React.forwardRef<HTMLDivElement, DropdownMenuContent
     if (asSheet) {
       return (
         <DialogPrimitive.Portal>
-          <DialogPrimitive.Overlay className="orbit-overlay fixed inset-0 z-50 bg-black/40 backdrop-blur-[2px]" />
+          <DialogPrimitive.Overlay className="orbit-overlay fixed inset-0 z-50 bg-[color:var(--orbit-overlay,rgb(0_0_0/0.40))] backdrop-blur-[2px]" />
           <DialogPrimitive.Content
             ref={ref}
             data-layout="sheet"
@@ -206,7 +206,7 @@ const itemClasses = (asSheet: boolean, inset?: boolean, destructive?: boolean) =
     "[&_svg]:pointer-events-none [&_svg]:shrink-0",
     asSheet
       ? "min-h-12 rounded-[var(--orbit-radius)] px-4 text-base active:bg-[var(--orbit-muted)] focus-visible:bg-[var(--orbit-muted)] [&_svg]:size-5"
-      : "min-h-9 rounded-[calc(var(--orbit-radius)*0.6)] px-2.5 py-1.5 text-sm data-[highlighted]:bg-[var(--orbit-accent)]/15 [&_svg]:size-4",
+      : "min-h-9 rounded-[calc(var(--orbit-radius)*0.6)] px-2.5 py-1.5 text-sm data-[highlighted]:bg-[color-mix(in_srgb,var(--orbit-accent)_15%,transparent)] [&_svg]:size-4",
     inset && (asSheet ? "pl-12" : "pl-8"),
     destructive && "text-[var(--orbit-destructive)]"
   );

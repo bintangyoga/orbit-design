@@ -35,7 +35,7 @@ const cardVariants = cva(
         glass: [
           "bg-[color-mix(in_srgb,var(--orbit-card)_65%,transparent)]",
           "backdrop-blur-xl backdrop-saturate-150",
-          "shadow-[0_8px_32px_-12px_rgb(0_0_0/0.25),inset_0_1px_0_0_rgb(255_255_255/var(--orbit-highlight-opacity))]",
+          "shadow-[0_8px_32px_-12px_color-mix(in_srgb,var(--orbit-shadow,#000)_25%,transparent),inset_0_1px_0_0_color-mix(in_srgb,var(--orbit-highlight)_calc(var(--orbit-highlight-opacity)*100%),transparent)]",
         ].join(" "),
         solid: "bg-[var(--orbit-card)] shadow-sm",
         outline: "bg-transparent",

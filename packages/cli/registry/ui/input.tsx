@@ -29,7 +29,7 @@ const inputVariants = cva(
       variant: {
         glass: [
           "bg-[color-mix(in_srgb,var(--orbit-background)_45%,transparent)] backdrop-blur-md",
-          "shadow-[inset_0_1px_2px_0_rgb(0_0_0/0.12)]",
+          "shadow-[inset_0_1px_2px_0_color-mix(in_srgb,var(--orbit-shadow,#000)_12%,transparent)]",
         ].join(" "),
         solid: "bg-[var(--orbit-background)]",
       },

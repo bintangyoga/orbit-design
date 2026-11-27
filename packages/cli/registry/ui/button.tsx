@@ -23,7 +23,7 @@ const buttonVariants = cva(
     // Border (shape comes from the `shape` variant below)
     "border border-[var(--orbit-border)]",
     // Inner depth gradient (top-to-bottom shading)
-    "bg-gradient-to-b from-white/[var(--orbit-highlight-opacity)] to-transparent",
+    "bg-gradient-to-b from-[color-mix(in_srgb,var(--orbit-highlight)_calc(var(--orbit-highlight-opacity)*100%),transparent)] to-transparent",
   ].join(" "),
   {
     variants: {
@@ -34,16 +34,16 @@ const buttonVariants = cva(
           "bg-[var(--orbit-primary)]",
           // Glass gradient overlay — creates the signature shine line
           "before:absolute before:inset-0 before:rounded-[inherit]",
-          "before:bg-gradient-to-b before:from-transparent before:via-[var(--orbit-gradient-highlight)]/[0.12] before:to-transparent",
+          "before:bg-gradient-to-b before:from-transparent before:via-[color-mix(in_srgb,var(--orbit-gradient-highlight)_12%,transparent)] before:to-transparent",
           "before:pointer-events-none",
           // Shine line along the top edge (replaces the old mid-button band, which read as a stray block)
           "after:absolute after:inset-x-[12%] after:top-0 after:h-px",
-          "after:bg-gradient-to-r after:from-transparent after:via-white/60 after:to-transparent",
+          "after:bg-gradient-to-r after:from-transparent after:via-[color-mix(in_srgb,var(--orbit-highlight)_60%,transparent)] after:to-transparent",
           "after:pointer-events-none",
           // Glow effect
-          "shadow-[0_0_calc(var(--orbit-glow-intensity)*40px)_calc(var(--orbit-glow-intensity)*8px)_var(--orbit-gradient-shadow)/0.3]",
+          "shadow-[0_0_calc(var(--orbit-glow-intensity)*40px)_calc(var(--orbit-glow-intensity)*8px)_color-mix(in_srgb,var(--orbit-gradient-shadow)_30%,transparent)]",
           // Hover: brighter glow
-          "hover:shadow-[0_0_calc(var(--orbit-glow-intensity)*60px)_calc(var(--orbit-glow-intensity)*12px)_var(--orbit-gradient-shadow)/0.45]",
+          "hover:shadow-[0_0_calc(var(--orbit-glow-intensity)*60px)_calc(var(--orbit-glow-intensity)*12px)_color-mix(in_srgb,var(--orbit-gradient-shadow)_45%,transparent)]",
           "hover:brightness-110",
           // Active: press effect
           "active:scale-[0.98] active:brightness-95",
@@ -51,7 +51,7 @@ const buttonVariants = cva(
           "focus-visible:ring-[var(--orbit-ring)]",
           // Border becomes gradient on this variant
           "border-transparent",
-          "shadow-[inset_0_0_0_1px_var(--orbit-gradient-shadow)/0.3,0_0_calc(var(--orbit-glow-intensity)*40px)_calc(var(--orbit-glow-intensity)*8px)_var(--orbit-gradient-shadow)/0.3]",
+          "shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--orbit-gradient-shadow)_30%,transparent),0_0_calc(var(--orbit-glow-intensity)*40px)_calc(var(--orbit-glow-intensity)*8px)_color-mix(in_srgb,var(--orbit-gradient-shadow)_30%,transparent)]",
         ].join(" "),
 
         // ── Secondary: subtle glass ──
@@ -59,9 +59,9 @@ const buttonVariants = cva(
           "text-[var(--orbit-secondary-foreground)]",
           "bg-[var(--orbit-secondary)]",
           "before:absolute before:inset-0 before:rounded-[inherit]",
-          "before:bg-gradient-to-b before:from-white/[0.04] before:to-transparent",
+          "before:bg-gradient-to-b before:from-[color-mix(in_srgb,var(--orbit-highlight)_4%,transparent)] before:to-transparent",
           "before:pointer-events-none",
-          "hover:bg-[var(--orbit-secondary)]/80",
+          "hover:bg-[color-mix(in_srgb,var(--orbit-secondary)_80%,transparent)]",
           "focus-visible:ring-[var(--orbit-ring)]",
         ].join(" "),
 
@@ -71,11 +71,11 @@ const buttonVariants = cva(
           "bg-transparent",
           "border-[var(--orbit-border)]",
           "before:absolute before:inset-0 before:rounded-[inherit]",
-          "before:bg-gradient-to-b before:from-white/[0.03] before:to-transparent",
+          "before:bg-gradient-to-b before:from-[color-mix(in_srgb,var(--orbit-highlight)_3%,transparent)] before:to-transparent",
           "before:pointer-events-none",
-          "hover:bg-[var(--orbit-accent)]/10",
+          "hover:bg-[color-mix(in_srgb,var(--orbit-accent)_10%,transparent)]",
           "hover:text-[var(--orbit-accent)]",
-          "hover:border-[var(--orbit-accent)]/40",
+          "hover:border-[color-mix(in_srgb,var(--orbit-accent)_40%,transparent)]",
           "focus-visible:ring-[var(--orbit-ring)]",
         ].join(" "),
 
@@ -83,7 +83,7 @@ const buttonVariants = cva(
         ghost: [
           "text-[var(--orbit-foreground)]",
           "bg-transparent",
-          "hover:bg-[var(--orbit-accent)]/10",
+          "hover:bg-[color-mix(in_srgb,var(--orbit-accent)_10%,transparent)]",
           "hover:text-[var(--orbit-accent-foreground)]",
           "focus-visible:ring-[var(--orbit-ring)]",
         ].join(" "),
@@ -93,27 +93,27 @@ const buttonVariants = cva(
           "text-[var(--orbit-destructive-foreground)]",
           "bg-[var(--orbit-destructive)]",
           "before:absolute before:inset-0 before:rounded-[inherit]",
-          "before:bg-gradient-to-b before:from-white/[0.1] before:to-transparent",
+          "before:bg-gradient-to-b before:from-[color-mix(in_srgb,var(--orbit-highlight)_10%,transparent)] before:to-transparent",
           "before:pointer-events-none",
-          "hover:bg-[var(--orbit-destructive)]/90",
+          "hover:bg-[color-mix(in_srgb,var(--orbit-destructive)_90%,transparent)]",
           "focus-visible:ring-[var(--orbit-destructive)]",
         ].join(" "),
 
         // ── Glass: frosted glass effect ──
         glass: [
           "text-[var(--orbit-foreground)]",
-          "bg-[var(--orbit-background)]/40",
+          "bg-[color-mix(in_srgb,var(--orbit-background)_40%,transparent)]",
           "backdrop-blur-md",
-          "border-[var(--orbit-border)]/50",
+          "border-[color-mix(in_srgb,var(--orbit-border)_50%,transparent)]",
           "before:absolute before:inset-0 before:rounded-[inherit]",
-          "before:bg-gradient-to-b before:from-white/[var(--orbit-highlight-opacity)] before:to-transparent",
+          "before:bg-gradient-to-b before:from-[color-mix(in_srgb,var(--orbit-highlight)_calc(var(--orbit-highlight-opacity)*100%),transparent)] before:to-transparent",
           "before:pointer-events-none",
           // Shine line along the top edge
           "after:absolute after:inset-x-[12%] after:top-0 after:h-px",
-          "after:bg-gradient-to-r after:from-transparent after:via-white/40 after:to-transparent",
+          "after:bg-gradient-to-r after:from-transparent after:via-[color-mix(in_srgb,var(--orbit-highlight)_40%,transparent)] after:to-transparent",
           "after:pointer-events-none",
-          "hover:bg-[var(--orbit-background)]/60",
-          "hover:border-[var(--orbit-accent)]/30",
+          "hover:bg-[color-mix(in_srgb,var(--orbit-background)_60%,transparent)]",
+          "hover:border-[color-mix(in_srgb,var(--orbit-accent)_30%,transparent)]",
           "focus-visible:ring-[var(--orbit-ring)]",
         ].join(" "),
       },

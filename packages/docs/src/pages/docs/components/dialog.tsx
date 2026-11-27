@@ -36,7 +36,7 @@ export default function DialogPage() {
   return (
     <DocPage
       title="Dialog"
-      description="A bottom sheet on phones that you can swipe down to close, and a centered modal from 768px up. Same parts in both."
+      description="One component for both screens. Import Dialog once: it is a bottom sheet on phones that you can swipe down to close, and a centered modal from 768px up, with the same parts and the same code."
     >
       <DocSection
         title="Default"
