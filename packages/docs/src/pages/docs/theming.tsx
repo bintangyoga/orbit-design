@@ -1,3 +1,5 @@
+import { BrandPicker } from "@/components/brand-picker";
+
 export default function ThemingPage() {
   return (
     <div className="p-8 max-w-3xl">
@@ -8,6 +10,37 @@ export default function ThemingPage() {
       </p>
 
       <div className="space-y-8">
+        <div>
+          <h2 className="text-xl font-semibold mb-3" id="brand">Use your brand color</h2>
+          <p className="text-sm text-[var(--orbit-muted-foreground)] mb-4">
+            Set one variable after the Glass Orbit theme in your global CSS. Primary, focus ring,
+            accent and the glass gradient are all derived from it, in light and dark mode.
+            Try it on this page:
+          </p>
+          <BrandPicker />
+          <div className="bg-[var(--orbit-muted)] rounded-md p-4 text-sm font-mono overflow-x-auto mt-4">
+            <pre>{`/* globals.css, after the glass-orbit theme block */
+:root {
+  --orbit-brand: #e11d48;
+}`}</pre>
+          </div>
+          <p className="text-sm text-[var(--orbit-muted-foreground)] mt-4 mb-2">
+            Or put it in a theme file and apply it. The file can be this small:
+          </p>
+          <div className="bg-[var(--orbit-muted)] rounded-md p-4 text-sm font-mono overflow-x-auto">
+            <pre>{`// brand.json
+{ "brand": "#e11d48" }
+
+npx glass-orbit theme apply brand.json`}</pre>
+          </div>
+          <p className="text-sm text-[var(--orbit-muted-foreground)] mt-4">
+            Any single color can still be set on its own, for example{" "}
+            <code>--orbit-primary-foreground</code> for text on the brand color,{" "}
+            <code>--orbit-overlay</code> for the backdrop behind sheets, or{" "}
+            <code>--orbit-shadow</code> for shadow color. Components use no fixed colors of their own.
+          </p>
+        </div>
+
         <div>
           <h2 className="text-xl font-semibold mb-3" id="custom-themes">Custom Themes</h2>
           <p className="text-sm text-[var(--orbit-muted-foreground)] mb-4">

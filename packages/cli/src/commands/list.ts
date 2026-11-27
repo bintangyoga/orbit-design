@@ -19,6 +19,10 @@ export function listCommand(): Command {
             : "";
           console.log(`  ${chalk.green("●")} ${chalk.bold(item.name)} ${chalk.gray(`[${item.type}]`)}${deps}`);
 
+          if (item.description) {
+            console.log(chalk.gray(`    ${item.description}`));
+          }
+
           if (item.dependencies?.length) {
             console.log(chalk.gray(`    npm deps: ${item.dependencies.join(", ")}`));
           }

@@ -1,0 +1,96 @@
+/* glass-orbit motion */
+/* Keyframes for Dialog, DropdownMenu and other overlays. Added once by `glass-orbit add`. */
+
+@keyframes orbit-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes orbit-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Bottom sheet: slides up from the bottom edge (mobile) */
+@keyframes orbit-sheet-in {
+  from { transform: translate3d(0, 100%, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+/* Starts from where a drag left it (--orbit-sheet-drag), so a swipe-down close is smooth */
+@keyframes orbit-sheet-out {
+  from { transform: translate3d(0, var(--orbit-sheet-drag, 0px), 0); }
+  to { transform: translate3d(0, 100%, 0); }
+}
+
+/* Centered modal (desktop) */
+@keyframes orbit-modal-in {
+  from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes orbit-modal-out {
+  from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  to { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+}
+
+/* Popovers and menus */
+@keyframes orbit-pop-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes orbit-pop-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.96); }
+}
+
+.orbit-overlay[data-state="open"] {
+  animation: orbit-fade-in 220ms ease-out;
+}
+.orbit-overlay[data-state="closed"] {
+  animation: orbit-fade-out 180ms ease-in forwards;
+}
+
+/* Mobile first: every overlay surface is a bottom sheet... */
+.orbit-surface[data-state="open"] {
+  animation: orbit-sheet-in 360ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.orbit-surface[data-state="closed"] {
+  animation: orbit-sheet-out 240ms cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* ...unless it is always a modal... */
+.orbit-surface[data-layout="modal"][data-state="open"] {
+  animation: orbit-modal-in 200ms ease-out;
+}
+.orbit-surface[data-layout="modal"][data-state="closed"] {
+  animation: orbit-modal-out 150ms ease-in forwards;
+}
+
+/* ...or a responsive one on a wide screen (md, 768px). */
+@media (min-width: 768px) {
+  .orbit-surface[data-layout="responsive"][data-state="open"] {
+    animation: orbit-modal-in 200ms ease-out;
+  }
+  .orbit-surface[data-layout="responsive"][data-state="closed"] {
+    animation: orbit-modal-out 150ms ease-in forwards;
+  }
+}
+
+.orbit-popover[data-state="open"] {
+  animation: orbit-pop-in 150ms ease-out;
+  transform-origin: var(--radix-dropdown-menu-content-transform-origin, center);
+}
+.orbit-popover[data-state="closed"] {
+  animation: orbit-pop-out 120ms ease-in forwards;
+  transform-origin: var(--radix-dropdown-menu-content-transform-origin, center);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-overlay,
+  .orbit-surface,
+  .orbit-popover {
+    animation-duration: 1ms !important;
+  }
+}

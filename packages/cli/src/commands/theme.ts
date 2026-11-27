@@ -111,6 +111,8 @@ export function themeCommand(): Command {
               : { ...orbitDark, colors: { ...orbitDark.colors, background: answers.background || "#0a0a0f", foreground: answers.foreground || "#fafafa" } };
 
           base.name = answers.themeName;
+          // The answers below set each color explicitly, so no brand derivation
+          base.brand = undefined;
           base.colors.primary = answers.primary;
           base.colors.ring = answers.primary;
           base.gradient.gradient = answers.gradientColor;
@@ -149,17 +151,24 @@ export function themeCommand(): Command {
             }
 
             // Load theme
-            const theme: OrbitTheme = await fs.readJSON(themeFile);
-            const darkTheme = { ...orbitDark, ...theme };
+            // A theme file can be as small as { "brand": "#e11d48" }
+            const theme: Partial<OrbitTheme> = await fs.readJSON(themeFile);
+            // Without "brand", the file's own colors are used as written
+            const darkTheme: OrbitTheme = { ...orbitDark, ...theme, brand: theme.brand } as OrbitTheme;
+            // The brand color applies to light mode too
+            const lightTheme: OrbitTheme = theme.brand
+              ? { ...orbitLight, brand: theme.brand }
+              : orbitLight;
 
             // Generate and write CSS
-            const css = generateThemeCSS(darkTheme, orbitLight);
+            const css = generateThemeCSS(darkTheme, lightTheme);
             const cssPath = config.tailwind.css;
 
             if (await fs.pathExists(cssPath)) {
               const existing = await fs.readFile(cssPath, "utf-8");
               // Replace existing theme block (also matches the old orbit-ui marker)
-              const pattern = /\/\* (?:glass-orbit|orbit-ui) theme.*?\*\/\n:root\s*\{[^}]*\}\s*\.dark\s*\{[^}]*\}/s;
+              // (comment lines, blank lines, then the :root and .dark blocks)
+              const pattern = /\/\* (?:glass-orbit|orbit-ui) theme[^\n]*\*\/\n(?:\/\*[^\n]*\*\/\n|\s*\n)*:root\s*\{[^}]*\}\s*\.dark\s*\{[^}]*\}/;
               if (pattern.test(existing)) {
                 const updated = existing.replace(pattern, css);
                 await fs.writeFile(cssPath, updated);
@@ -171,7 +180,7 @@ export function themeCommand(): Command {
               await fs.writeFile(cssPath, css);
             }
 
-            spinner.succeed(chalk.green(`Theme "${theme.name}" applied! 🎨`));
+            spinner.succeed(chalk.green(`Theme "${theme.name ?? theme.brand ?? themeFile}" applied! 🎨`));
             console.log(chalk.gray(`  Updated: ${config.tailwind.css}`));
             console.log();
           } catch (err: any) {

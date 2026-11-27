@@ -111,6 +111,11 @@ export function addCommand(): Command {
             await fs.writeFile(targetPath, file.content);
           }
 
+          if (item.tailwind?.css) {
+            const added = await appendCss(config.tailwind.css, item.tailwind.css);
+            if (added) spinner.info(`Added ${chalk.cyan(item.name)} styles to ${chalk.cyan(config.tailwind.css)}`);
+          }
+
           if (item.dependencies && item.dependencies.length > 0) {
             allDeps.push(...item.dependencies);
           }
@@ -137,6 +142,19 @@ export function addCommand(): Command {
         process.exit(1);
       }
     });
+}
+
+/**
+ * Appends a registry CSS block to the user's global CSS, once.
+ * The block's first line is its marker comment, used to detect it later.
+ */
+async function appendCss(cssPath: string, css: string): Promise<boolean> {
+  const marker = css.trimStart().split("\n")[0].trim();
+  const existing = (await fs.pathExists(cssPath)) ? await fs.readFile(cssPath, "utf-8") : "";
+  if (marker && existing.includes(marker)) return false;
+  await fs.ensureFile(cssPath);
+  await fs.appendFile(cssPath, `${existing.length ? "\n\n" : ""}${css.trim()}\n`);
+  return true;
 }
 
 function resolveAliasDir(alias: string): string {

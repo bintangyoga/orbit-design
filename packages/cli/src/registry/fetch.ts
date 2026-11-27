@@ -1,24 +1,28 @@
 import { RegistryItem } from "../registry";
-import { getButtonRegistry } from "../components/button";
-import { getUtilsRegistry } from "../components/utils";
-import { getResponsiveSheetRegistry } from "../components/responsive-sheet";
+import { registryEntries } from "./items";
+import { readRegistryFile } from "./paths";
 
 /**
- * Fetch the full component registry.
- * In production, this could fetch from a remote URL or GitHub raw.
- * For now, it's built from local component definitions.
+ * Build the full component registry from the source files in packages/cli/registry.
+ * In production, this could fetch from a remote URL or GitHub raw instead.
  */
 export async function getRegistry(): Promise<Map<string, RegistryItem>> {
   const registry = new Map<string, RegistryItem>();
 
-  const components: RegistryItem[] = [
-    ...getUtilsRegistry(),
-    ...getButtonRegistry(),
-    ...getResponsiveSheetRegistry(),
-  ];
-
-  for (const item of components) {
-    registry.set(item.name, item);
+  for (const entry of registryEntries) {
+    registry.set(entry.name, {
+      name: entry.name,
+      type: entry.type,
+      description: entry.description,
+      dependencies: entry.dependencies,
+      registryDependencies: entry.registryDependencies,
+      files: entry.files.map((file) => ({
+        path: file.path,
+        content: readRegistryFile(file.source),
+        type: file.type,
+      })),
+      tailwind: entry.css ? { css: readRegistryFile(entry.css) } : undefined,
+    });
   }
 
   return registry;
