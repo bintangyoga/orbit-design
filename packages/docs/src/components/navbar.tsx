@@ -23,7 +23,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <a
-            href="https://github.com/bintangyoga/orbit-design"
+            href="https://github.com/bintangyoga/glass-orbit"
             target="_blank"
             className="text-sm text-[var(--orbit-muted-foreground)] hover:text-[var(--orbit-foreground)] transition-colors"
           >

@@ -20,7 +20,7 @@ export default function Home() {
         </Button>
         <Button variant="outline" size="lg" asChild>
           <a
-            href="https://github.com/bintangyoga/orbit-design"
+            href="https://github.com/bintangyoga/glass-orbit"
             target="_blank"
             rel="noopener noreferrer"
           >
